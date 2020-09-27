@@ -11,6 +11,7 @@ const HIT_UP_CLASS = 'hit-up';
 const HIT_DOWN_CLASS = 'hit-down';
 const HIT_LEFT_CLASS = 'hit-left';
 const HIT_RIGHT_CLASS = 'hit-right';
+let isPlaying = false;
 
 
 function sendCoordinates(newX, newY, isOut) {
@@ -21,12 +22,39 @@ function sendCoordinates(newX, newY, isOut) {
     });
 }
 
+function playOutSound() {
+    if (!isPlaying) {
+        setTimeout(() => {
+            // Audio Context
+            const context = new AudioContext();
+            os = context.createOscillator();
+            g = context.createGain();
+            os.type = 'sine';
+            os.connect(g);
+            os.frequency.value = '264.6';
+            g.connect(context.destination);
+            os.start(0);
+            g.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 3);
+            isPlaying = false;
+        }, 1000);
+    }
+}
+
+function markOut() {
+    addClass(document.body,'out');
+    setTimeout(() => {
+        removeClass(document.body, 'out');
+    }, 1000);
+}
+
 
 function listenForBroadcas() {
     socket.on('coordinates-broadcast', (data) => {
-       // console.log(data);
+        // console.log(data);
         if (data.isOut) {
             startBall();
+            playOutSound();
+            markOut();
         } else {
             ball.style.top = data.y + 'px';
             ball.style.left = data.x + 'px';
@@ -96,7 +124,7 @@ function verifyBallBoundary(newX, newY) {
         sendCoordinates(newX, newY, false);
     }
 
-   
+
 }
 
 function startBall() {

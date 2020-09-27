@@ -8,6 +8,17 @@ body {
     background-color: green;
 }
 
+.out {
+    animation: out 1s;
+}
+
+@keyframes out {
+    0% { background-color: green;}
+    25% { background-color: red;}
+    50% { background-color: green;}
+    100% { background-color: red;}
+}
+
 .field {
     background-color: green;
     width: calc(100% - 75px);
