@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Reta</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            height: 100%;
+            width: 100vh;
+            background-color: black;
+        }
+
+        .field {
+            background-color: #346b31;
+            width: calc(100% - 75px);
+            height: calc(100% - 75px);
+            margin-left: 30px;
+            margin-top: 30px;
+            position: absolute;
+            border: 5px solid white;
+            z-index: 0;
+        }
+
+        .divider {
+            width: 0;
+            height: 100%;
+            left: 50%;
+            border: 1px white solid;
+            position: absolute;
+
+        }
+
+        .circle-center {
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid white;
+            border-radius: 100%;
+        }
+
+        .ball {
+            background: url(/public/images/ball.svg);
+            background-size: 35px 35px;
+            height: 35px;
+            width: 35px;
+            position: absolute;
+            top: 45%;
+            left: 47%;
+            overflow-x: hidden;
+            z-index: 1;
+        }
+
+        .hit-right {
+            animation: roll-right 1s;
+        }
+
+        .hit-left {
+            animation: roll-left 1s;
+        }
+
+        .hit-up {
+            animation: roll-up 1s;
+        }
+
+        .hit-down {
+            animation: roll-down 1s;
+        }
+
+        @keyframes roll-right {
+            0% {
+                transform: rotate(10deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes roll-left {
+            0% {
+                transform: rotate(-10deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+
+        }
+
+        @keyframes roll-up {
+            0% {
+                transform: rotate(100deg);
+            }
+
+            100% {
+                transform: rotate(1000deg);
+            }
+
+        }
+
+        @keyframes roll-down {
+            0% {
+                transform: rotate(-100deg);
+            }
+
+            100% {
+                transform: rotate(-1000deg);
+            }
+
+        }
+
+        @media screen and (orientation:portrait) {
+            .divider {
+                width: 100%;
+                height: 0;
+                transform: rotate(90deg);
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .blackboard {
+                height: 90vh;
+                margin-bottom: 0;
+                position: fixed;
+            }
+
+
+        }
+
+        @media screen and (orientation:landscape) {}
+    </style>
+</head>
+
+<body>
+    <div class="field">
+        <div class="divider">
+            <div class="circle-center"></div>
+        </div>
+        <div class="ball" id="ball"></div>
+    </div>
+    <script src="/public/js/index.js"></script>
+</body>
+
+</html>
