@@ -13,18 +13,20 @@
         body {
             height: 100%;
             width: 100vh;
-            background-color: black;
+            background-color: green;
         }
 
         .field {
-            background-color: #346b31;
+            /* background-color: #346b31; */
+            background-color: green;
             width: calc(100% - 75px);
             height: calc(100% - 75px);
             margin-left: 30px;
             margin-top: 30px;
             position: absolute;
             border: 5px solid white;
-            z-index: 0;
+            z-index: 1;
+            min-height: 250px;
         }
 
         .divider {
@@ -37,8 +39,8 @@
         }
 
         .circle-center {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             position: absolute;
             left: 50%;
             top: 50%;
@@ -47,16 +49,83 @@
             border-radius: 100%;
         }
 
+
+        .middle {
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid white;
+            border-radius: 100%;
+        }
+
+        .area-one {
+            width: 70px;
+            height: 150px;
+            position: absolute;
+            border: 2px solid white;
+            top: 50%;
+            transform: translate(-3%, -50%);
+        }
+
+        .penalty-area-one {
+            width: 30px;
+            height: 80px;
+            position: absolute;
+            border: 2px solid white;
+            top: 50%;
+            transform: translate(-3%, -50%);
+        }
+
+        .goal-one {
+            width: 15px;
+            height: 30px;
+            position: absolute;
+            border: 2px solid white;
+            top: 50%;
+            transform: translate(-100%, -50%);
+        }
+
         .ball {
             background: url(/public/images/ball.svg);
             background-size: 35px 35px;
+            border-radius: 100%;
             height: 35px;
             width: 35px;
             position: absolute;
-            top: 45%;
-            left: 47%;
-            overflow-x: hidden;
+            top: calc(50% - 15px);
+            left: calc(50% - 15px);
             z-index: 1;
+        }
+
+        .area-two {
+            width: 70px;
+            height: 150px;
+            position: absolute;
+            border: 2px solid white;
+            left: calc(100% - 70px);
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+
+        .penalty-area-two {
+            width: 30px;
+            height: 80px;
+            position: absolute;
+            border: 2px solid white;
+            top: 50%;
+            transform: translate(-3%, -50%);
+        }
+
+        .goal-two {
+            width: 15px;
+            height: 30px;
+            position: absolute;
+            border: 2px solid white;
+            top: 50%;
+            transform: translate(-100%, -50%);
         }
 
         .hit-right {
@@ -133,6 +202,67 @@
                 position: fixed;
             }
 
+            .area-one {
+                transform: rotate(90deg);
+                top: -1px;
+                left: 50%;
+                width: 150px;
+                height: 70px;
+                transform: translate(-50%);
+                border-top: transparent;
+            }
+
+            .penalty-area-one {
+                width: 80px;
+                height: 30px;
+                top: -1%;
+                left: 50%;
+                transform: translate(-50%);
+            }
+
+            .goal-one {
+                width: 30px;
+                height: 15px;
+                top: 50%;
+                transform: translate(55%, -200%);
+            }
+
+            .ball {
+                top: calc(50% - 15px);
+                left: calc(50% - 18px);
+            }
+
+
+            .area-two {
+                transform: rotate(90deg) !important;
+                width: 70px;
+                height: 150px;
+                left: calc(65% - 100px);
+                top: calc(100% - 112px);
+                border-right: transparent;
+                transform: translate(0, -50%);
+            }
+
+            .penalty-area-two {
+                width: 30px;
+                height: 80px;
+                position: absolute;
+                border: 2px solid white;
+                top: 50%;
+                left: calc(54%);
+                transform: translate(-3%, -50%);
+            }
+
+            .goal-two {
+                width: 15px;
+                height: 30px;
+                position: absolute;
+                border: 2px solid white;
+                top: 50%;
+                left: calc(130%);
+                transform: translate(-100%, -50%);
+            }
+
 
         }
 
@@ -141,9 +271,21 @@
 </head>
 
 <body>
+    <div class="arc1"></div>
     <div class="field">
         <div class="divider">
-            <div class="circle-center"></div>
+            <div class="circle-center">
+                <div class="middle"></div>
+            </div>
+        </div>
+        <div class="area-one">
+            <div class="penalty-area-one">
+                <div class="goal-one"></div>
+            </div>
+        </div>
+        <div class="area-two">
+            <div class="penalty-area-two"></div>
+            <div class="goal-two"></div>
         </div>
         <div class="ball" id="ball"></div>
     </div>
