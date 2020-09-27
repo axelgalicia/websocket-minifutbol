@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
 
     socket.on('coordinates', (data) => {
        //  console.log('x: ', data.x, 'y: ', data.y, 'isOut:', data.isOut);
-        io.sockets.emit('coordinates-broadcast', data);
+        socket.broadcast.emit('coordinates-broadcast', data);
     });
 
 });

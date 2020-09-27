@@ -119,6 +119,8 @@ function verifyBallBoundary(newX, newY) {
     }
     if (isOut) {
         startBall();
+        markOut();
+        playOutSound();
         sendCoordinates(0, 0, true);
     } else {
         sendCoordinates(newX, newY, false);
