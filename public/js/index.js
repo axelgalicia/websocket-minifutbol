@@ -1,5 +1,5 @@
 //Socket.IO
-const socket = io.connect('http://juegalareta.com:4000');
+const socket = io.connect('http://juegalareta.com');
 
 const field = document.getElementById('field');
 const ball = document.getElementById('ball');
