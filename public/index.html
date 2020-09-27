@@ -17,7 +17,6 @@
         }
 
         .field {
-            /* background-color: #346b31; */
             background-color: green;
             width: calc(100% - 75px);
             height: calc(100% - 75px);
@@ -89,7 +88,7 @@
         }
 
         .ball {
-            background: url(/public/images/ball.svg);
+            background: url(/images/ball.svg);
             background-size: 35px 35px;
             border-radius: 100%;
             height: 35px;
@@ -249,7 +248,7 @@
                 height: 80px;
                 position: absolute;
                 border: 2px solid white;
-                top: 80%;
+                top: calc(50%);
                 left: calc(54%);
                 transform: translate(-3%, -50%);
             }
@@ -289,7 +288,7 @@
         </div>
         <div class="ball" id="ball"></div>
     </div>
-    <script src="/public/js/index.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
