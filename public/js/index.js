@@ -1,5 +1,9 @@
 const field = document.getElementById('field');
 const ball = document.getElementById('ball');
+
+const outOfBoundX = 30;
+const outOfBoundY = 30;
+
 const HIT_UP_CLASS = 'hit-up';
 const HIT_DOWN_CLASS = 'hit-down';
 const HIT_LEFT_CLASS = 'hit-left';
@@ -9,6 +13,7 @@ const HIT_RIGHT_CLASS = 'hit-right';
 dragElementHandler(ball);
 
 function hitBall(initialX, newX, initialY, newY) {
+
 
     let hitDirectionClassX;
     let hitDirectionClassY;
@@ -34,6 +39,36 @@ function hitBall(initialX, newX, initialY, newY) {
         removeClass(ball, hitDirectionClassX);
         removeClass(ball, hitDirectionClassY);
     }, 1000);
+
+    verifyBallBoundary(newX, newY);
+}
+
+function verifyBallBoundary(newX, newY) {
+    // console.log('x:', newX, 'y:',newY, 'fieldX:', field.clientWidth, 'fieldY:', field.clientHeight)
+    let isOut = false;
+
+    if (isPortrait()) {
+        if (newX > field.clientWidth + 50 || newX < outOfBoundX) {
+            isOut = true;
+        }
+
+        if (newY > field.clientHeight + 50 || newY < outOfBoundY) {
+            isOut = true;
+        }
+    } else {
+        if (newX > field.clientWidth + 50 || newX < outOfBoundX) {
+            isOut = true;
+        }
+
+        if (newY > field.clientHeight + 5 || newY < outOfBoundY) {
+            isOut = true;
+        }
+    }
+    if (isOut) {
+        ball.style.top = 'calc(50% - 15px)';
+        ball.style.left = 'calc(50% - 18px)';
+
+    }
 }
 
 function addClass(element, className) {
