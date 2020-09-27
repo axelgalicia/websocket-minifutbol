@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pong</title>
+
+    <style>
+        * {
+            margin: 0;
+        }
+        #gameBoard {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameBoard" width="373" height="662"></canvas>
+    <script type="module" src="/public/js/pong.js"></script>
+</body>
+</html>
