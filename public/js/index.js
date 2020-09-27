@@ -1,3 +1,6 @@
+//Socket.IO
+const socket = io.connect('http://localhost:4000');
+
 const field = document.getElementById('field');
 const ball = document.getElementById('ball');
 
@@ -10,10 +13,32 @@ const HIT_LEFT_CLASS = 'hit-left';
 const HIT_RIGHT_CLASS = 'hit-right';
 
 
+function sendCoordinates(newX, newY, isOut) {
+    socket.emit('coordinates', {
+        x: newX,
+        y: newY,
+        isOut
+    });
+}
+
+
+function listenForBroadcas() {
+    socket.on('coordinates-broadcast', (data) => {
+       // console.log(data);
+        if (data.isOut) {
+            startBall();
+        } else {
+            ball.style.top = data.y + 'px';
+            ball.style.left = data.x + 'px';
+        }
+    });
+}
+
+
 dragElementHandler(ball);
+listenForBroadcas();
 
 function hitBall(initialX, newX, initialY, newY) {
-
 
     let hitDirectionClassX;
     let hitDirectionClassY;
@@ -65,10 +90,18 @@ function verifyBallBoundary(newX, newY) {
         }
     }
     if (isOut) {
-        ball.style.top = 'calc(50% - 15px)';
-        ball.style.left = 'calc(50% - 18px)';
-
+        startBall();
+        sendCoordinates(0, 0, true);
+    } else {
+        sendCoordinates(newX, newY, false);
     }
+
+   
+}
+
+function startBall() {
+    ball.style.top = 'calc(50% - 15px)';
+    ball.style.left = 'calc(50% - 18px)';
 }
 
 function addClass(element, className) {
