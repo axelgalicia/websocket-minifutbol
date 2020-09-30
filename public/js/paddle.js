@@ -12,19 +12,20 @@ export const PLAYER = {
 
 export class Paddle {
 
-    constructor(gameWidth, gameHeight, playerNumber) {
-        this.gameWidth = gameWidth;
+    constructor(game, playerNumber) {
+        this.gameWidth = game.gameWidth;
         this.width = paddleWidth;
         this.height = paddleHeight;
         this.playerNumber = playerNumber;
         this.maxSpeed = maxSpeed;
         this.speed = 0;
+        this.score = 0;
 
         this.position = {
-            x: (gameWidth / 2) - (this.width / 2),
+            x: (game.gameWidth / 2) - (this.width / 2),
             y: playerNumber == PLAYER.ONE ?
                 this.height - offsetFromBoard / 2 :
-                gameHeight - this.height - offsetFromBoard,
+                game.gameHeight - this.height - offsetFromBoard,
         }
     }
 
